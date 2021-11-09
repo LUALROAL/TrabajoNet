@@ -18,7 +18,9 @@ namespace ConsultaMVCWeb.Controllers
         // GET: Clientes
         public ActionResult Index()
         {
-            return View(db.Clientes.ToList());
+            List<Clientes> listaParaPintar = db.Clientes.Where(c => c.Nombre.Contains("Romeo")).ToList();
+            return View(listaParaPintar);
+            //return View(db.Clientes.ToList());
         }
 
         // GET: Clientes/Details/5

@@ -87,4 +87,3 @@ C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.CoreC
 C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.dll
 C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.pdb
 C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.AssemblyReference.cache
-C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.CopyComplete

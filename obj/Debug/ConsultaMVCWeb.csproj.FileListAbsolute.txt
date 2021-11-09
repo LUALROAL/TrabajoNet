@@ -83,7 +83,8 @@ C:\Users\alejo\source\repos\ConsultaMVCWeb\bin\es\System.Web.Razor.resources.dll
 C:\Users\alejo\source\repos\ConsultaMVCWeb\bin\es\System.Web.WebPages.resources.dll
 C:\Users\alejo\source\repos\ConsultaMVCWeb\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\alejo\source\repos\ConsultaMVCWeb\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.AssemblyReference.cache
 C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.CoreCompileInputs.cache
 C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.dll
 C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.pdb
+C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.AssemblyReference.cache
+C:\Users\alejo\source\repos\ConsultaMVCWeb\obj\Debug\ConsultaMVCWeb.csproj.CopyComplete

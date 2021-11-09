@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Practica_PatronesModelStoreContainer" CdmEntityContainer="Practica_PatronesEntities2">
+  <EntityContainerMapping StorageEntityContainer="Practica_PatronesModel1StoreContainer" CdmEntityContainer="Practica_PatronesEntities1">
     <EntitySetMapping Name="Clientes">
-      <EntityTypeMapping TypeName="Practica_PatronesModel.Clientes">
+      <EntityTypeMapping TypeName="Practica_PatronesModel1.Clientes">
         <MappingFragment StoreEntitySet="Clientes">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -16,7 +16,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Contacto_Cliente">
-      <EntityTypeMapping TypeName="Practica_PatronesModel.Contacto_Cliente">
+      <EntityTypeMapping TypeName="Practica_PatronesModel1.Contacto_Cliente">
         <MappingFragment StoreEntitySet="Contacto_Cliente">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
@@ -26,7 +26,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tipo_Contacto">
-      <EntityTypeMapping TypeName="Practica_PatronesModel.Tipo_Contacto">
+      <EntityTypeMapping TypeName="Practica_PatronesModel1.Tipo_Contacto">
         <MappingFragment StoreEntitySet="Tipo_Contacto">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Tipo" ColumnName="Tipo" />

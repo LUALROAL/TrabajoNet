@@ -13,10 +13,10 @@ namespace ConsultaMVCWeb.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Practica_PatronesEntities : DbContext
+    public partial class Practica_PatronesEntities2 : DbContext
     {
-        public Practica_PatronesEntities()
-            : base("name=Practica_PatronesEntities")
+        public Practica_PatronesEntities2()
+            : base("name=Practica_PatronesEntities2")
         {
         }
     
@@ -26,5 +26,7 @@ namespace ConsultaMVCWeb.Models
         }
     
         public virtual DbSet<Clientes> Clientes { get; set; }
+        public virtual DbSet<Contacto_Cliente> Contacto_Cliente { get; set; }
+        public virtual DbSet<Tipo_Contacto> Tipo_Contacto { get; set; }
     }
 }

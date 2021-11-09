@@ -6,120 +6,120 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using ConsultaMVCWeb.Dto;
 using ConsultaMVCWeb.Models;
 
 namespace ConsultaMVCWeb.Controllers
 {
-    public class ClientesController : Controller
+    public class ContactoClienteController : Controller
     {
         private Practica_PatronesEntities2 db = new Practica_PatronesEntities2();
 
-        // GET: Clientes
+        // GET: Contacto_Cliente
         public ActionResult Index()
         {
-            return View(db.Clientes.ToList());
+            var contacto_Cliente = db.Contacto_Cliente.Include(c => c.Clientes).Include(c => c.Tipo_Contacto);
+            return View(contacto_Cliente.ToList());
         }
 
-        // GET: Clientes/Details/5
+        // GET: Contacto_Cliente/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            Contacto_Cliente contacto_Cliente = db.Contacto_Cliente.Find(id);
+            if (contacto_Cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            return View(contacto_Cliente);
         }
 
-        // GET: Clientes/Create
+        // GET: Contacto_Cliente/Create
         public ActionResult Create()
         {
+            // ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre");
+            ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo");
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: Contacto_Cliente/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nombre,Apellido,Direccion,Ciudad,Email,Telefono,Ocupacion")] Clientes clientes)
+        public ActionResult Create([Bind(Include = "ID,ID_Cliente,ID_Tipo,Valor")] Contacto_Cliente contacto_Cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Clientes.Add(clientes);
+                db.Contacto_Cliente.Add(contacto_Cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(clientes);
+            ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre", contacto_Cliente.ID_Tipo);
+            ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo", contacto_Cliente.ID_Tipo);
+            return View(contacto_Cliente);
         }
 
-        // GET: Clientes/Edit/5
+        // GET: Contacto_Cliente/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes cliente = db.Clientes.Find(id);
-            var datosContacto = db.Contacto_Cliente.Where(cc => cc.ID_Cliente == id)
-                .Include(i => i.Tipo_Contacto)
-                .ToList();
-
-            ClienteDto modelo = new ClienteDto() { Cliente = cliente, DatosContacto = datosContacto };
-
-
-
-            if (cliente == null)
+            Contacto_Cliente contacto_Cliente = db.Contacto_Cliente.Find(id);
+            if (contacto_Cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(modelo);
+            ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre", contacto_Cliente.ID_Tipo);
+            ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo", contacto_Cliente.ID_Tipo);
+            return View(contacto_Cliente);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: Contacto_Cliente/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nombre,Apellido,Direccion,Ciudad,Email,Telefono,Ocupacion")] Clientes clientes)
+        public ActionResult Edit([Bind(Include = "ID,ID_Cliente,ID_Tipo,Valor")] Contacto_Cliente contacto_Cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clientes).State = EntityState.Modified;
+                db.Entry(contacto_Cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(clientes);
+            ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre", contacto_Cliente.ID_Tipo);
+            ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo", contacto_Cliente.ID_Tipo);
+            return View(contacto_Cliente);
         }
 
-        // GET: Clientes/Delete/5
+        // GET: Contacto_Cliente/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clientes clientes = db.Clientes.Find(id);
-            if (clientes == null)
+            Contacto_Cliente contacto_Cliente = db.Contacto_Cliente.Find(id);
+            if (contacto_Cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(clientes);
+            return View(contacto_Cliente);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: Contacto_Cliente/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Clientes clientes = db.Clientes.Find(id);
-            db.Clientes.Remove(clientes);
+            Contacto_Cliente contacto_Cliente = db.Contacto_Cliente.Find(id);
+            db.Contacto_Cliente.Remove(contacto_Cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

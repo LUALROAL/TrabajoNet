@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Practica_PatronesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Practica_PatronesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="ID" />
@@ -18,10 +18,61 @@
           <Property Name="Telefono" Type="nvarchar" MaxLength="25" Nullable="false" />
           <Property Name="Ocupacion" Type="nvarchar" MaxLength="70" Nullable="false" />
         </EntityType>
+        <EntityType Name="Contacto_Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Cliente" Type="int" />
+          <Property Name="ID_Tipo" Type="int" />
+          <Property Name="Valor" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Contacto___ID_Ti__60A75C0F">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Contacto_Cliente" Type="Self.Contacto_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacto_Cliente">
+              <PropertyRef Name="ID_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacto___ID_Ti__619B8048">
+          <End Role="Tipo_Contacto" Type="Self.Tipo_Contacto" Multiplicity="0..1" />
+          <End Role="Contacto_Cliente" Type="Self.Contacto_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Contacto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacto_Cliente">
+              <PropertyRef Name="ID_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Practica_PatronesModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacto_Cliente" EntityType="Self.Contacto_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Contacto" EntityType="Self.Tipo_Contacto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Contacto___ID_Ti__60A75C0F" Association="Self.FK__Contacto___ID_Ti__60A75C0F">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Contacto_Cliente" EntitySet="Contacto_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacto___ID_Ti__619B8048" Association="Self.FK__Contacto___ID_Ti__619B8048">
+            <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
+            <End Role="Contacto_Cliente" EntitySet="Contacto_Cliente" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Practica_PatronesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -37,16 +88,70 @@
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Ocupacion" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contacto_Cliente" Relationship="Self.FK__Contacto___ID_Ti__60A75C0F" FromRole="Clientes" ToRole="Contacto_Cliente" />
         </EntityType>
-        <EntityContainer Name="Practica_PatronesEntities" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="Contacto_Cliente">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Cliente" Type="Int32" />
+          <Property Name="ID_Tipo" Type="Int32" />
+          <Property Name="Valor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Contacto___ID_Ti__60A75C0F" FromRole="Contacto_Cliente" ToRole="Clientes" />
+          <NavigationProperty Name="Tipo_Contacto" Relationship="Self.FK__Contacto___ID_Ti__619B8048" FromRole="Contacto_Cliente" ToRole="Tipo_Contacto" />
+        </EntityType>
+        <EntityType Name="Tipo_Contacto">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contacto_Cliente" Relationship="Self.FK__Contacto___ID_Ti__619B8048" FromRole="Tipo_Contacto" ToRole="Contacto_Cliente" />
+        </EntityType>
+        <Association Name="FK__Contacto___ID_Ti__60A75C0F">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Contacto_Cliente" Type="Self.Contacto_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacto_Cliente">
+              <PropertyRef Name="ID_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contacto___ID_Ti__619B8048">
+          <End Role="Tipo_Contacto" Type="Self.Tipo_Contacto" Multiplicity="0..1" />
+          <End Role="Contacto_Cliente" Type="Self.Contacto_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Contacto">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contacto_Cliente">
+              <PropertyRef Name="ID_Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Practica_PatronesEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="Contacto_Cliente" EntityType="Self.Contacto_Cliente" />
+          <EntitySet Name="Tipo_Contacto" EntityType="Self.Tipo_Contacto" />
+          <AssociationSet Name="FK__Contacto___ID_Ti__60A75C0F" Association="Self.FK__Contacto___ID_Ti__60A75C0F">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Contacto_Cliente" EntitySet="Contacto_Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contacto___ID_Ti__619B8048" Association="Self.FK__Contacto___ID_Ti__619B8048">
+            <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
+            <End Role="Contacto_Cliente" EntitySet="Contacto_Cliente" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Practica_PatronesModelStoreContainer" CdmEntityContainer="Practica_PatronesEntities">
+        <EntityContainerMapping StorageEntityContainer="Practica_PatronesModelStoreContainer" CdmEntityContainer="Practica_PatronesEntities2">
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="Practica_PatronesModel.Clientes">
               <MappingFragment StoreEntitySet="Clientes">
@@ -58,6 +163,24 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Ocupacion" ColumnName="Ocupacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacto_Cliente">
+            <EntityTypeMapping TypeName="Practica_PatronesModel.Contacto_Cliente">
+              <MappingFragment StoreEntitySet="Contacto_Cliente">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+                <ScalarProperty Name="ID_Tipo" ColumnName="ID_Tipo" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Contacto">
+            <EntityTypeMapping TypeName="Practica_PatronesModel.Tipo_Contacto">
+              <MappingFragment StoreEntitySet="Tipo_Contacto">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

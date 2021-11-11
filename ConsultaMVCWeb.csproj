@@ -220,11 +220,11 @@
     <Content Include="Views\Clientes\Edit.cshtml" />
     <Content Include="Views\Clientes\Index.cshtml" />
     <Content Include="Views\Clientes\Saludo.cshtml" />
-    <Content Include="Views\Contacto_Cliente\Create.cshtml" />
-    <Content Include="Views\Contacto_Cliente\Delete.cshtml" />
-    <Content Include="Views\Contacto_Cliente\Details.cshtml" />
-    <Content Include="Views\Contacto_Cliente\Edit.cshtml" />
-    <Content Include="Views\Contacto_Cliente\Index.cshtml" />
+    <Content Include="Views\ContactoCliente\Create.cshtml" />
+    <Content Include="Views\ContactoCliente\Delete.cshtml" />
+    <Content Include="Views\ContactoCliente\Details.cshtml" />
+    <Content Include="Views\ContactoCliente\Edit.cshtml" />
+    <Content Include="Views\ContactoCliente\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

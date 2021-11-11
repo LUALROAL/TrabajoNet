@@ -64,7 +64,7 @@ namespace ConsultaMVCWeb.Controllers
         }
 
         // GET: Contacto_Cliente/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int IdCliente)
         {
             if (id == null)
             {
@@ -77,6 +77,7 @@ namespace ConsultaMVCWeb.Controllers
             }
             ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre", contacto_Cliente.ID_Tipo);
             ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo", contacto_Cliente.ID_Tipo);
+            ViewBag.IdCliente = IdCliente;
             return View(contacto_Cliente);
         }
 
@@ -99,7 +100,7 @@ namespace ConsultaMVCWeb.Controllers
         }
 
         // GET: Contacto_Cliente/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, int IdCliente)
         {
             if (id == null)
             {
@@ -110,6 +111,7 @@ namespace ConsultaMVCWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.IdCliente = IdCliente;
             return View(contacto_Cliente);
         }
 
@@ -122,7 +124,7 @@ namespace ConsultaMVCWeb.Controllers
             db.Contacto_Cliente.Remove(contacto_Cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        } 
 
         protected override void Dispose(bool disposing)
         {

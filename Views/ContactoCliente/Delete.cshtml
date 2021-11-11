@@ -49,9 +49,13 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="form-actions no-color">
+    <input type="submit" value="Delete" class="btn btn-default" /> 
+
+    <button class="btn btn-default">@Html.ActionLink("Lista", "Index", "ContactoCliente")</button>
+    <button class="btn btn-default">@Html.ActionLink("Volver", "Edit", "Clientes", new { id = ViewBag.IdCliente }, null)</button>
+    
+
+</div>
     }
 </div>

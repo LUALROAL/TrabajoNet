@@ -37,11 +37,12 @@ namespace ConsultaMVCWeb.Controllers
         }
 
         // GET: Contacto_Cliente/Create
-        public ActionResult Create()
+        public ActionResult Create(int IdCliente)
         {
             // ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre");
             ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo");
-            return View();
+            var modelo = new Contacto_Cliente() { ID_Cliente= IdCliente };
+            return View(modelo);
         }
 
         // POST: Contacto_Cliente/Create

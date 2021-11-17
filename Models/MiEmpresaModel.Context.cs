@@ -12,6 +12,8 @@ namespace ConsultaMVCWeb.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Practica_PatronesEntities2 : DbContext
     {
@@ -28,5 +30,14 @@ namespace ConsultaMVCWeb.Models
         public virtual DbSet<Clientes> Clientes { get; set; }
         public virtual DbSet<Contacto_Cliente> Contacto_Cliente { get; set; }
         public virtual DbSet<Tipo_Contacto> Tipo_Contacto { get; set; }
+    
+        public virtual ObjectResult<VerRegistros_Result> VerRegistros(string condicion)
+        {
+            var condicionParameter = condicion != null ?
+                new ObjectParameter("Condicion", condicion) :
+                new ObjectParameter("Condicion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<VerRegistros_Result>("VerRegistros", condicionParameter);
+        }
     }
 }

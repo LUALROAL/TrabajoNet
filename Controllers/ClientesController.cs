@@ -16,10 +16,16 @@ namespace ConsultaMVCWeb.Controllers
         private Practica_PatronesEntities2 db = new Practica_PatronesEntities2();
 
         // GET: Clientes
-        public ActionResult Index()
+        public ActionResult Index(string buscar="")
         {
-            List<Clientes> listaParaPintar = db.Clientes.Where(c => c.Nombre.Contains("Romeo")).ToList();
+            if(buscar != "")
+            {
+                List<Clientes> listaParaPintarF = db.Clientes.Where(c => c.Nombre.Contains(buscar)).ToList();
+                return View(listaParaPintarF);
+            }
+            List<Clientes> listaParaPintar = db.Clientes.OrderBy(c =>c.ID).Take(10).ToList();
             return View(listaParaPintar);
+
             //return View(db.Clientes.ToList());
         }
 
@@ -49,7 +55,7 @@ namespace ConsultaMVCWeb.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Nombre,Apellido,Direccion,Ciudad,Email,Telefono,Ocupacion")] Clientes clientes)
+        public ActionResult Create([Bind(Include = "ID,Nombre,Apellido,Ocupacion")] Clientes clientes)
         {
             if (ModelState.IsValid)
             {
@@ -89,15 +95,15 @@ namespace ConsultaMVCWeb.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Nombre,Apellido,Direccion,Ciudad,Email,Telefono,Ocupacion")] Clientes clientes)
+        public ActionResult Edit( ClienteDto clienteDto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clientes).State = EntityState.Modified;
+                db.Entry(clienteDto.Cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(clientes);
+            return View(clienteDto);
         }
 
         // GET: Clientes/Delete/5

@@ -10,24 +10,12 @@
 namespace ConsultaMVCWeb.Models
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    public partial class Clientes
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Clientes()
-        {
-            this.Contacto_Cliente = new HashSet<Contacto_Cliente>();
-        }
     
+    public partial class VerRegistros_Result
+    {
         public int ID { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Ocupacion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contacto_Cliente> Contacto_Cliente { get; set; }
-
     }
 }

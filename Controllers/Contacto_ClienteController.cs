@@ -41,7 +41,7 @@ namespace ConsultaMVCWeb.Controllers
         {
             // ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre");
             ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo");
-            var modelo = new Contacto_Cliente() { ID_Cliente= IdCliente };
+            var modelo = new Contacto_Cliente() { ID_Cliente = IdCliente };
             return View(modelo);
         }
 
@@ -56,7 +56,7 @@ namespace ConsultaMVCWeb.Controllers
             {
                 db.Contacto_Cliente.Add(contacto_Cliente);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Clientes", new { id = contacto_Cliente.ID_Cliente });
             }
 
             ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre", contacto_Cliente.ID_Tipo);
@@ -93,7 +93,7 @@ namespace ConsultaMVCWeb.Controllers
             {
                 db.Entry(contacto_Cliente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Clientes", new { id = contacto_Cliente.ID_Cliente });
             }
             ViewBag.ID_Tipo = new SelectList(db.Clientes, "ID", "Nombre", contacto_Cliente.ID_Tipo);
             ViewBag.ID_Tipo = new SelectList(db.Tipo_Contacto, "ID", "Tipo", contacto_Cliente.ID_Tipo);
@@ -124,7 +124,7 @@ namespace ConsultaMVCWeb.Controllers
             Contacto_Cliente contacto_Cliente = db.Contacto_Cliente.Find(id);
             db.Contacto_Cliente.Remove(contacto_Cliente);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "Clientes", new { id = contacto_Cliente.ID_Cliente });
         } 
 
         protected override void Dispose(bool disposing)

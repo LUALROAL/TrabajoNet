@@ -7,10 +7,6 @@
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Apellido" Type="String" MaxLength="23" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Ocupacion" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Contacto_Cliente" Relationship="Self.FK__Contacto___ID_Ti__60A75C0F" FromRole="Clientes" ToRole="Contacto_Cliente" />
   </EntityType>
@@ -69,5 +65,14 @@
       <End Role="Tipo_Contacto" EntitySet="Tipo_Contacto" />
       <End Role="Contacto_Cliente" EntitySet="Contacto_Cliente" />
     </AssociationSet>
+    <FunctionImport Name="VerRegistros" ReturnType="Collection(Practica_PatronesModel.VerRegistros_Result)">
+      <Parameter Name="Condicion" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="VerRegistros_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Apellido" Nullable="false" MaxLength="23" />
+    <Property Type="String" Name="Ocupacion" Nullable="false" MaxLength="70" />
+  </ComplexType>
 </Schema>

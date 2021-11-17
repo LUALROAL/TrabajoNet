@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<ConsultaMVCWeb.Models.Contacto_Cliente>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CONTACTO CLIENTES";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h3>LISTA CONTACTO CLIENTES</h3>
+<br />
+@*<p>
+    @Html.ActionLink("Crear Nuevo Contacto", "Create")
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -42,9 +42,9 @@
                 @Html.DisplayFor(modelItem => item.Tipo_Contacto.Tipo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID, IdCliente= item.ID_Cliente }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID })
             </td>
         </tr>
     }

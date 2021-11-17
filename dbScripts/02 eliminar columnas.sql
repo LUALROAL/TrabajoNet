@@ -1,0 +1,7 @@
+ALTER TABLE Clientes DROP COLUMN Direccion;
+
+ALTER TABLE Clientes DROP COLUMN Ciudad;
+
+ALTER TABLE Clientes DROP COLUMN Email;
+
+ALTER TABLE Clientes DROP COLUMN Telefono;

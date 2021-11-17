@@ -159,6 +159,9 @@
     <Compile Include="Models\Tipo_Contacto.cs">
       <DependentUpon>MiEmpresaModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VerRegistros_Result.cs">
+      <DependentUpon>MiEmpresaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
